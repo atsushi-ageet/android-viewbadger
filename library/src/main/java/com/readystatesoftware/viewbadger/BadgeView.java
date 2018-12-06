@@ -283,6 +283,15 @@ public class BadgeView extends TextView {
 		}
 	}
 	
+    /**
+     * Set the numeric badge label.
+     * 
+     * @param number the numeric badge label.
+     */
+    public void setNumber(int number) {
+        setText(String.valueOf(number));
+    }
+
 	/**
      * Increment the numeric badge label. If the current badge label cannot be converted to
      * an integer value, its label will be set to "0".
