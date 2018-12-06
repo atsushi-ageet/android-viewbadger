@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RoundRectShape;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -41,7 +42,8 @@ public class BadgeView extends TextView {
 	private static final int DEFAULT_POSITION = POSITION_TOP_RIGHT;
 	private static final int DEFAULT_BADGE_COLOR = Color.parseColor("#CCFF0000"); //Color.RED;
 	private static final int DEFAULT_TEXT_COLOR = Color.WHITE;
-	
+	private static final int DEFAULT_ELEVATION = 100;
+
 	private static Animation fadeIn;
 	private static Animation fadeOut;
 	
@@ -118,6 +120,10 @@ public class BadgeView extends TextView {
 		int paddingPixels = dipToPixels(DEFAULT_LR_PADDING_DIP);
 		setPadding(paddingPixels, 0, paddingPixels, 0);
 		setTextColor(DEFAULT_TEXT_COLOR);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			setElevation(dipToPixels(DEFAULT_ELEVATION));
+			setOutlineProvider(null);
+		}
 		
 		fadeIn = new AlphaAnimation(0, 1);
 		fadeIn.setInterpolator(new DecelerateInterpolator());
