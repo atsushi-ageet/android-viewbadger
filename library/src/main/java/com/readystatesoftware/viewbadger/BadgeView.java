@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RoundRectShape;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -38,7 +38,7 @@ public class BadgeView extends TextView {
 	
 	private static final int DEFAULT_MARGIN_DIP = 5;
 	private static final int DEFAULT_LR_PADDING_DIP = 5;
-	private static final int DEFAULT_CORNER_RADIUS_DIP = 8;
+	private static final int DEFAULT_CORNER_RADIUS_DIP = 100;
 	private static final int DEFAULT_POSITION = POSITION_TOP_RIGHT;
 	private static final int DEFAULT_BADGE_COLOR = Color.parseColor("#CCFF0000"); //Color.RED;
 	private static final int DEFAULT_TEXT_COLOR = Color.WHITE;
@@ -57,7 +57,7 @@ public class BadgeView extends TextView {
 	
 	private boolean isShown;
 	
-	private ShapeDrawable badgeBg;
+	private Drawable badgeBg;
 	
 	private int targetTabIndex;
 	
@@ -325,15 +325,10 @@ public class BadgeView extends TextView {
 		return increment(-offset);
 	}
 	
-	private ShapeDrawable getDefaultBackground() {
-		
-		int r = dipToPixels(DEFAULT_CORNER_RADIUS_DIP);
-		float[] outerR = new float[] {r, r, r, r, r, r, r, r};
-        
-		RoundRectShape rr = new RoundRectShape(outerR, null, null);
-		ShapeDrawable drawable = new ShapeDrawable(rr);
-		drawable.getPaint().setColor(badgeColor);
-		
+	private Drawable getDefaultBackground() {
+		GradientDrawable drawable = new GradientDrawable();
+		drawable.setCornerRadius(dipToPixels(DEFAULT_CORNER_RADIUS_DIP));
+		drawable.setColor(badgeColor);
 		return drawable;
 		
 	}
