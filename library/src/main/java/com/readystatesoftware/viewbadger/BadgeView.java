@@ -144,25 +144,16 @@ public class BadgeView extends TextView {
 	}
 
 	private void applyTo(View target) {
-		
-		LayoutParams lp = target.getLayoutParams();
-		ViewParent parent = target.getParent();
-		FrameLayout container = new FrameLayout(context);
-		
 		if (target instanceof TabWidget) {
-			
 			// set target to the relevant tab child container
 			target = ((TabWidget) target).getChildTabViewAt(targetTabIndex);
 			this.target = target;
-			
-			((ViewGroup) target).addView(container, 
-					new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-			
-			this.setVisibility(View.GONE);
-			container.addView(this);
-			
+			applyTo(target);
 		} else {
-			
+			LayoutParams lp = target.getLayoutParams();
+			ViewParent parent = target.getParent();
+			FrameLayout container = new FrameLayout(context);
+
 			// TODO verify that parent is indeed a ViewGroup
 			ViewGroup group = (ViewGroup) parent; 
 			int index = group.indexOfChild(target);
@@ -170,8 +161,8 @@ public class BadgeView extends TextView {
 			group.removeView(target);
 			group.addView(container, index, lp);
 			
-			container.addView(target);
-	
+			container.addView(target, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
 			this.setVisibility(View.GONE);
 			container.addView(this);
 			
