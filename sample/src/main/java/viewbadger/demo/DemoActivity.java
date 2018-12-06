@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.readystatesoftware.viewbadger.BadgeView;
-import com.readystatesoftware.viewbadger.R;
+import com.readystatesoftware.viewbadger.demo.R;
 
 public class DemoActivity extends TabActivity {
     

@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 android {
-    compileSdkVersion 4
-    buildToolsVersion "23.0.0"
+    compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.readystatesoftware.viewbadger"
+        applicationId "com.readystatesoftware.viewbadger.demo"
         minSdkVersion 4
-        targetSdkVersion 4
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
@@ -18,5 +19,5 @@ android {
 }
 
 dependencies {
-    compile project(':library')
+    implementation project(':library')
 }
