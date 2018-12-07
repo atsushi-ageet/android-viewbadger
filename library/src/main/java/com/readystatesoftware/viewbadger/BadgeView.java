@@ -149,6 +149,7 @@ public class BadgeView extends TextView {
 			target = ((TabWidget) target).getChildTabViewAt(targetTabIndex);
 			this.target = target;
 			applyTo(target);
+			((View)target.getParent()).setSelected(target.isSelected());
 		} else {
 			LayoutParams lp = target.getLayoutParams();
 			ViewParent parent = target.getParent();
