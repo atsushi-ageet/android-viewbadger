@@ -16,4 +16,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
+    libraryVariants.all {
+        generateBuildConfig.enabled = false
+    }
 }
